@@ -1,57 +1,68 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
-export interface TopicProgress {
-  [topicId: string]: boolean
-}
-
-export interface ResourceProgress {
-  [resourceId: string]: boolean
-}
-
-export interface LevelProgress {
-  topics: TopicProgress
-  resources: ResourceProgress
-  completed: boolean
-}
-
-export interface DomainProgress {
-  [levelId: string]: LevelProgress
-}
-
-export interface ProgressData {
-  [domain: string]: DomainProgress
-}
+export interface TopicProgress { [topicId: string]: boolean }
+export interface ResourceProgress { [resourceId: string]: boolean }
+export interface LevelProgress { topics: TopicProgress; resources: ResourceProgress; completed: boolean }
+export interface DomainProgress { [levelId: string]: LevelProgress }
+export interface ProgressData { [domain: string]: DomainProgress }
 
 const STORAGE_KEY = "learning-path-progress-v2"
 
 export function useLearningProgress() {
   const [progress, setProgress] = useState<ProgressData>({})
   const [mounted, setMounted] = useState(false)
+  const saveTimeoutRef = useRef<number | null>(null)
 
-  // Initialize from localStorage
+  // Initialize from localStorage (client-only)
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved) {
-      try {
-        setProgress(JSON.parse(saved))
-      } catch (e) {
-        console.error("[v0] Failed to parse progress data:", e)
-      }
+    if (typeof window === "undefined") {
+      setMounted(true)
+      return
     }
-    setMounted(true)
+
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY)
+      if (raw) setProgress(JSON.parse(raw))
+    } catch (e) {
+      console.error("[v0] Failed to parse progress data:", e)
+    } finally {
+      setMounted(true)
+    }
   }, [])
 
-  // Save to localStorage whenever progress changes
+  // Debounced save to localStorage
   useEffect(() => {
-    if (mounted) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+    if (!mounted || typeof window === "undefined") return
+
+    // clear existing timeout
+    if (saveTimeoutRef.current) {
+      window.clearTimeout(saveTimeoutRef.current)
+    }
+
+    // debounce: save after 1s of inactivity
+    saveTimeoutRef.current = window.setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+      } catch (e) {
+        console.error("Failed to save progress:", e)
+      }
+      saveTimeoutRef.current = null
+    }, 1000)
+
+    // cleanup on unmount
+    return () => {
+      if (saveTimeoutRef.current) {
+        window.clearTimeout(saveTimeoutRef.current)
+        saveTimeoutRef.current = null
+      }
     }
   }, [progress, mounted])
 
-  const toggleTopic = (domain: string, levelId: string, topicId: string) => {
-    setProgress((prev) => {
+  // Helpers (memoized)
+  const toggleTopic = useCallback((domain: string, levelId: string, topicId: string) => {
+    setProgress(prev => {
       const domainProgress = prev[domain] || {}
       const levelProgress = domainProgress[levelId] || { topics: {}, resources: {}, completed: false }
       const topicStatus = levelProgress.topics[topicId] ?? false
@@ -62,18 +73,15 @@ export function useLearningProgress() {
           ...domainProgress,
           [levelId]: {
             ...levelProgress,
-            topics: {
-              ...levelProgress.topics,
-              [topicId]: !topicStatus,
-            },
+            topics: { ...levelProgress.topics, [topicId]: !topicStatus },
           },
         },
       }
     })
-  }
+  }, [])
 
-  const toggleResource = (domain: string, levelId: string, resourceId: string) => {
-    setProgress((prev) => {
+  const toggleResource = useCallback((domain: string, levelId: string, resourceId: string) => {
+    setProgress(prev => {
       const domainProgress = prev[domain] || {}
       const levelProgress = domainProgress[levelId] || { topics: {}, resources: {}, completed: false }
       const resourceStatus = levelProgress.resources[resourceId] ?? false
@@ -84,18 +92,15 @@ export function useLearningProgress() {
           ...domainProgress,
           [levelId]: {
             ...levelProgress,
-            resources: {
-              ...levelProgress.resources,
-              [resourceId]: !resourceStatus,
-            },
+            resources: { ...levelProgress.resources, [resourceId]: !resourceStatus },
           },
         },
       }
     })
-  }
+  }, [])
 
-  const completeLevel = (domain: string, levelId: string) => {
-    setProgress((prev) => {
+  const completeLevel = useCallback((domain: string, levelId: string) => {
+    setProgress(prev => {
       const domainProgress = prev[domain] || {}
       const levelProgress = domainProgress[levelId] || { topics: {}, resources: {}, completed: false }
 
@@ -103,33 +108,27 @@ export function useLearningProgress() {
         ...prev,
         [domain]: {
           ...domainProgress,
-          [levelId]: {
-            ...levelProgress,
-            completed: !levelProgress.completed,
-          },
+          [levelId]: { ...levelProgress, completed: !levelProgress.completed },
         },
       }
     })
-  }
+  }, [])
 
-  const getLevelProgress = (domain: string, levelId: string) => {
+  const getLevelProgress = useCallback((domain: string, levelId: string) => {
     return progress[domain]?.[levelId] ?? { topics: {}, resources: {}, completed: false }
-  }
+  }, [progress])
 
-  const getDomainStats = (domain: string, allLevels: Array<{ id: string; topics: Array<{ id: string }> }>) => {
+  const getDomainStats = useCallback((domain: string, allLevels: Array<{ id: string; topics: Array<{ id: string }> }>) => {
     const domainProgress = progress[domain] || {}
 
-    // Calculate total topics across all levels
-    const totalTopics = allLevels.reduce((sum, level) => sum + level.topics.length, 0)
+    const totalTopics = allLevels.reduce((sum, level) => sum + (level.topics?.length ?? 0), 0)
 
-    // Calculate completed topics across all levels
     const completedTopics = allLevels.reduce((sum, level) => {
       const levelTopics = domainProgress[level.id]?.topics || {}
       return sum + Object.values(levelTopics).filter(Boolean).length
     }, 0)
 
-    // Count completed levels
-    const completedLevels = allLevels.filter((level) => domainProgress[level.id]?.completed === true).length
+    const completedLevels = allLevels.filter(level => domainProgress[level.id]?.completed === true).length
 
     return {
       completedLevels,
@@ -138,26 +137,26 @@ export function useLearningProgress() {
       completedTopics,
       progressPercent: totalTopics > 0 ? (completedTopics / totalTopics) * 100 : 0,
     }
-  }
+  }, [progress])
 
-  const getGlobalProgress = (
-    allDomains: Array<{ id: string; allLevels: Array<{ id: string; topics: Array<{ id: string }> }> }>,
+  const getGlobalProgress = useCallback((
+    allDomains: Array<{ id: string; allLevels: Array<{ id: string; topics: Array<{ id: string }> }> }>
   ) => {
     let totalCompleted = 0
     let totalCount = 0
 
-    allDomains.forEach((domain) => {
+    allDomains.forEach(domain => {
       const stats = getDomainStats(domain.id, domain.allLevels)
       totalCompleted += stats.completedTopics
       totalCount += stats.totalTopics
     })
 
     return totalCount > 0 ? (totalCompleted / totalCount) * 100 : 0
-  }
+  }, [getDomainStats])
 
-  const isTopicCompleted = (domain: string, levelId: string, topicId: string) => {
+  const isTopicCompleted = useCallback((domain: string, levelId: string, topicId: string) => {
     return progress[domain]?.[levelId]?.topics?.[topicId] ?? false
-  }
+  }, [progress])
 
   return {
     progress,
@@ -171,3 +170,4 @@ export function useLearningProgress() {
     mounted,
   }
 }
+
