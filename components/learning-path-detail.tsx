@@ -13,6 +13,15 @@ interface LearningPathDetailProps {
   domain: string
 }
 
+/**
+ * UPDATED: LearningPathDetail component now integrates with the new dual-view Roadmap
+ * 
+ * Key changes:
+ * 1. No structural changes to this component - it remains the same wrapper
+ * 2. The Roadmap component now handles view switching internally
+ * 3. All existing progress tracking, stats, and UI remain unchanged
+ * 4. The component still provides domain context and level data to Roadmap
+ */
 export function LearningPathDetail({ path, domain }: LearningPathDetailProps) {
   const { getDomainStats, mounted } = useLearningProgress()
 
@@ -22,7 +31,7 @@ export function LearningPathDetail({ path, domain }: LearningPathDetailProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      {/* Header Section - Unchanged */}
       <div className="bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 text-white py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <Link href="/" className="inline-flex items-center text-red-500 hover:text-red-400 mb-6">
@@ -32,6 +41,7 @@ export function LearningPathDetail({ path, domain }: LearningPathDetailProps) {
           <h1 className="text-5xl font-bold mb-4">{path.title}</h1>
           <p className="text-xl text-gray-300 mb-8">{path.description}</p>
 
+          {/* Stats Grid - Unchanged */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
             <div className="bg-white/10 dark:bg-white/5 rounded-lg p-4 border border-white/10">
               <p className="text-sm text-gray-300">Levels Completed</p>
@@ -51,6 +61,7 @@ export function LearningPathDetail({ path, domain }: LearningPathDetailProps) {
             </div>
           </div>
 
+          {/* Progress Bar - Unchanged */}
           <ProgressBar
             progress={stats.progressPercent}
             label={`Progress: ${stats.completedTopics}/${stats.totalTopics} topics completed`}
@@ -59,11 +70,18 @@ export function LearningPathDetail({ path, domain }: LearningPathDetailProps) {
         </div>
       </div>
 
-      {/* Levels */}
-      <div className="max-w-5xl mx-auto px-4 py-20">
+      {/* Roadmap Section - Now with dual-view capability */}
+      {/* 
+        The Roadmap component now internally handles:
+        - View mode switching (Visual Map / List View)
+        - Visual map with connected nodes and side panel
+        - Collapsible list view with progress bars
+        - All progress tracking via useLearningProgress hook
+      */}
+      <div className="max-w-7xl mx-auto px-4 py-20">
         <Roadmap levels={path.levels} domain={domain} />
 
-        {/* CTA Section */}
+        {/* CTA Section - Unchanged */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
