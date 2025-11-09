@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState } from "react"
-import { Moon, Sun, BookOpen } from "lucide-react"
+import { Moon, Sun } from "lucide-react"
 
 export function Navbar() {
   const [isDark, setIsDark] = useState(false)
@@ -40,8 +41,15 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-destructive rounded-lg flex items-center justify-center text-white font-bold">
-              <BookOpen className="w-5 h-5" />
+            <div className="w-16 h-16  flex items-center justify-center overflow-hidden">
+              <Image
+                src="/logo.png" 
+                alt="Learning Paths Logo"
+                width={64}
+                height={64}
+                className="object-contain"
+                priority 
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-base leading-none">Learning Paths</span>
