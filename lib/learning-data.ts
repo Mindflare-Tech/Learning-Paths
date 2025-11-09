@@ -1069,7 +1069,6 @@ export const learningPaths: Record<string, PathData> = {
       },
     ],
   },
-
   "python-aiml": {
     title: "Python & AI/ML",
     description: "Master Python programming and Machine Learning from basics to deployment",
@@ -1183,8 +1182,8 @@ export const learningPaths: Record<string, PathData> = {
         id: "PY04",
         title: "Project: Python Mini Projects",
         topics: [
-          { id: "proj-calculator", name: "Scientific Calculator", completed: false },
-          { id: "proj-password", name: "Password Generator & Manager", completed: false },
+          { id: "proj-calculator", name: "Guess the Number (computer)", completed: false },
+          { id: "proj-password", name: "Rock Paper Scissors", completed: false },
           { id: "proj-scraper", name: "Web Scraper (BeautifulSoup)", completed: false },
           { id: "proj-automation", name: "Task Automation Script", completed: false },
         ],
@@ -1230,13 +1229,7 @@ export const learningPaths: Record<string, PathData> = {
             type: "youtube",
             completed: false,
           },
-          {
-            id: "numpy-keith",
-            name: "NumPy Course - Keith Galli",
-            url: "https://www.youtube.com/watch?v=GB9ByFAIAH4",
-            type: "youtube",
-            completed: false,
-          },
+
           {
             id: "numpy-docs",
             name: "NumPy Documentation",
@@ -1254,8 +1247,6 @@ export const learningPaths: Record<string, PathData> = {
           { id: "pandas-read", name: "Reading CSV, Excel, SQL", completed: false },
           { id: "pandas-clean", name: "Data Cleaning & Handling Missing Values", completed: false },
           { id: "pandas-filter", name: "Filtering & Selecting Data", completed: false },
-          { id: "pandas-group", name: "GroupBy & Aggregations", completed: false },
-          { id: "pandas-merge", name: "Merging & Joining DataFrames", completed: false },
         ],
         resources: [
           {
@@ -1267,8 +1258,8 @@ export const learningPaths: Record<string, PathData> = {
           },
           {
             id: "pandas-corey",
-            name: "Pandas Series - Corey Schafer",
-            url: "https://www.youtube.com/watch?v=ZyhVh-qRZPA&list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS",
+            name: "Data Cleaning in Pandas - Alex The Analyst",
+            url: "https://youtu.be/bDhvCp3_lYw?si=bIwpo2o6LvwBLv7m",
             type: "youtube",
             completed: false,
           },
@@ -1329,15 +1320,15 @@ export const learningPaths: Record<string, PathData> = {
         resources: [
           {
             id: "eda-krish",
-            name: "EDA Tutorial - Krish Naik",
-            url: "https://www.youtube.com/watch?v=fHFOANOHwh8",
+            name: "Introduction to EDA And Feature Engineering - Krish Naik",
+            url: "https://youtu.be/xhB-dmKmzRk?si=duqjrYIZiqOgwT7I",
             type: "youtube",
             completed: false,
           },
           {
             id: "eda-kaggle",
             name: "Kaggle EDA Notebooks",
-            url: "https://www.kaggle.com/code",
+            url: "https://www.kaggle.com/code?searchQuery=EDA",
             type: "course",
             completed: false,
           },
@@ -1397,15 +1388,15 @@ export const learningPaths: Record<string, PathData> = {
         resources: [
           {
             id: "ml-andrew",
-            name: "Machine Learning - Andrew Ng",
-            url: "https://www.youtube.com/watch?v=PPLop4L2eGk&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN",
+            name: "Introduction to Machine Learning",
+            url: "https://youtu.be/ukzFI9rgwfU?si=Oazbd5jEl6Iq8HXV",
             type: "youtube",
             completed: false,
           },
           {
             id: "ml-krish",
-            name: "ML Playlist - Krish Naik",
-            url: "https://www.youtube.com/watch?v=bPrmA1SEN2k&list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe",
+            name: "ML Playlist In 60 Hours",
+            url: "https://youtube.com/playlist?list=PLfFghEzKVmjvII5ZcBnFWQOUjtUVdDnmo&si=HDLkg3DaAvJ5Kquq",
             type: "youtube",
             completed: false,
           },
@@ -1415,6 +1406,13 @@ export const learningPaths: Record<string, PathData> = {
             url: "https://scikit-learn.org/stable/tutorial/index.html",
             type: "docs",
             completed: false,
+          }, {
+            id: "reg-course",
+            name: "Kaggle - Intro to ML",
+            url: "https://www.kaggle.com/learn/intro-to-machine-learning",
+            type: "course",
+            completed: false,
+            
           },
         ],
       },
@@ -1429,25 +1427,20 @@ export const learningPaths: Record<string, PathData> = {
           { id: "reg-metrics", name: "R² Score, MSE, RMSE", completed: false },
         ],
         resources: [
-          {
-            id: "reg-krish",
-            name: "Linear Regression - Krish Naik",
-            url: "https://www.youtube.com/watch?v=UZPfbG0jHKY",
-            type: "youtube",
-            completed: false,
-          },
+
           {
             id: "reg-statquest",
             name: "Regression - StatQuest",
-            url: "https://www.youtube.com/watch?v=nk2CQITm_eo",
+            url: "https://youtube.com/playlist?list=PLblh5JKOoLUIzaEkCLIUxQFjPIlapw8nU&si=KAD4HlKxAsGnx75w",
             type: "youtube",
             completed: false,
           },
+          
           {
-            id: "reg-course",
-            name: "Kaggle - Intro to ML",
-            url: "https://www.kaggle.com/learn/intro-to-machine-learning",
-            type: "course",
+            id: "class-sklearn",
+            name: "Scikit-learn Regression",
+            url: "https://scikit-learn.org/stable/supervised_learning.html",
+            type: "docs",
             completed: false,
           },
         ],
@@ -1466,8 +1459,8 @@ export const learningPaths: Record<string, PathData> = {
         resources: [
           {
             id: "class-krish",
-            name: "Classification Algorithms - Krish Naik",
-            url: "https://www.youtube.com/watch?v=VtK9hUjW8l8",
+            name: "What Is Classification",
+            url: "https://youtu.be/DAFljjxmyZw?si=kYc1S2CvRzhS62qn",
             type: "youtube",
             completed: false,
           },
@@ -1500,8 +1493,8 @@ export const learningPaths: Record<string, PathData> = {
         resources: [
           {
             id: "unsup-krish",
-            name: "Unsupervised Learning - Krish Naik",
-            url: "https://www.youtube.com/watch?v=IUn8k5zSI6g",
+            name: "Unsupervised Learning Playlist",
+            url: "https://youtube.com/playlist?list=PLOLWGEXpOrByXHRGMfU1b7X4esb-c1i2N&si=bKbvToUCmdFis_9A",
             type: "youtube",
             completed: false,
           },
@@ -1533,22 +1526,22 @@ export const learningPaths: Record<string, PathData> = {
         resources: [
           {
             id: "proj-ml-krish",
-            name: "End-to-End ML Projects",
-            url: "https://www.youtube.com/watch?v=S_F_c9e2bz4",
+            name: "House Price Prediction",
+            url: "https://youtu.be/Wqmtf9SA_kk?si=IXQSDJG7Yluw0avg",
             type: "youtube",
             completed: false,
           },
           {
-            id: "proj-kaggle-comp",
-            name: "Kaggle Competitions",
-            url: "https://www.kaggle.com/competitions",
-            type: "course",
+            id: "proj-datasets",
+            name: "Dataset Sources",
+            url: "https://www.kaggle.com/datasets",
+            type: "docs",
             completed: false,
           },
           {
             id: "proj-titanic",
-            name: "Titanic Dataset Tutorial",
-            url: "https://www.youtube.com/watch?v=I3FBJdiExcg",
+            name: "Spam Ham Detection",
+            url: "https://youtu.be/nkPNQk4-3UE?si=d9LDdKjhLvurWNxd",
             type: "youtube",
             completed: false,
           },
@@ -1579,13 +1572,6 @@ export const learningPaths: Record<string, PathData> = {
             type: "youtube",
             completed: false,
           },
-          {
-            id: "dl-krish",
-            name: "Deep Learning Playlist - Krish Naik",
-            url: "https://www.youtube.com/watch?v=DKSZHN7jftI&list=PLZoTAELRMXVPGU70ZGsckrMdr0FteeRUi",
-            type: "youtube",
-            completed: false,
-          },
         ],
       },
       {
@@ -1606,13 +1592,7 @@ export const learningPaths: Record<string, PathData> = {
             type: "youtube",
             completed: false,
           },
-          {
-            id: "tf-sentdex",
-            name: "TensorFlow 2.0 - Sentdex",
-            url: "https://www.youtube.com/watch?v=tPYj3fFJGjk",
-            type: "youtube",
-            completed: false,
-          },
+
           {
             id: "tf-docs",
             name: "TensorFlow Documentation",
@@ -1633,6 +1613,14 @@ export const learningPaths: Record<string, PathData> = {
           { id: "cnn-augment", name: "Data Augmentation", completed: false },
         ],
         resources: [
+
+          {
+            id: "cnn-krish",
+            name: "CNN Explained For Beginners",
+            url: "https://www.youtube.com/watch?v=zfiSAzpy9NM",
+            type: "youtube",
+            completed: false,
+          }, 
           {
             id: "cnn-andrew",
             name: "CNN Tutorial - Andrew Ng",
@@ -1640,17 +1628,11 @@ export const learningPaths: Record<string, PathData> = {
             type: "youtube",
             completed: false,
           },
-          {
-            id: "cnn-krish",
-            name: "CNN Explained - Krish Naik",
-            url: "https://www.youtube.com/watch?v=zfiSAzpy9NM",
-            type: "youtube",
-            completed: false,
-          },
+          
           {
             id: "cnn-cs231n",
-            name: "Stanford CS231n",
-            url: "https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv",
+            name: "Image Classification Using CNN",
+            url: "https://youtu.be/7HPwo4wnJeA?si=asaxob0zEwe0RGd2",
             type: "youtube",
             completed: false,
           },
@@ -1667,57 +1649,53 @@ export const learningPaths: Record<string, PathData> = {
           { id: "rnn-time", name: "Time Series Forecasting", completed: false },
         ],
         resources: [
-          {
-            id: "rnn-andrew",
-            name: "RNN Tutorial - Andrew Ng",
-            url: "https://www.youtube.com/watch?v=S27pHKBEp30&list=PLkDaE6sCZn6F6wUI9tvS_Gw1vaFAx6rd6",
-            type: "youtube",
-            completed: false,
-          },
-          {
-            id: "lstm-yt",
-            name: "LSTM Explained",
-            url: "https://www.youtube.com/watch?v=8HyCNIVRbSU",
-            type: "youtube",
-            completed: false,
-          },
+
           {
             id: "rnn-krish",
-            name: "RNN & LSTM - Krish Naik",
+            name: "RNN & LSTM Explained",
             url: "https://www.youtube.com/watch?v=WCUNPb-5EYI",
             type: "youtube",
             completed: false,
           },
+
+          {
+            id: "rnn-andrew",
+            name: "RNN Full Course",
+            url: "https://youtube.com/playlist?list=PLuhqtP7jdD8ARBnzj8SZwNFhwWT89fAFr&si=9_ig_vP3d9V7J6Kw",
+            type: "youtube",
+            completed: false,
+          },
+          
         ],
       },
       {
         id: "DL05",
         title: "Project: Deep Learning Applications",
         topics: [
-          { id: "proj-image-class", name: "Image Classification (CIFAR-10)", completed: false },
-          { id: "proj-object-detect", name: "Object Detection System", completed: false },
+          { id: "proj-image-class", name: "Breast Cancer Classification", completed: false },
+          { id: "proj-object-detect", name: "MNIST Digit Classification", completed: false },
           { id: "proj-sentiment", name: "Sentiment Analysis", completed: false },
-          { id: "proj-chatbot", name: "Simple Chatbot", completed: false },
+          { id: "proj-chatbot", name: "Customer Churn Prediction", completed: false },
         ],
         resources: [
           {
             id: "proj-dl-krish",
-            name: "DL Projects - Krish Naik",
-            url: "https://www.youtube.com/watch?v=fiz1ORTBGpY",
+            name: "Breast Cancer Classification with Neural Network",
+            url: "https://youtu.be/WGNI-k20GNo?si=bMfdFAGfUS-dplqY",
             type: "youtube",
             completed: false,
           },
           {
             id: "proj-cv-yt",
-            name: "Computer Vision Projects",
-            url: "https://www.youtube.com/watch?v=01sAkU_NvOY",
+            name: "Customer Churn Prediction using ANN - CampusX",
+            url: "https://youtu.be/9wmImImmgcI?si=HRAu5ZimaYPJ3Knx",
             type: "youtube",
             completed: false,
           },
           {
             id: "proj-nlp-yt",
-            name: "NLP Projects",
-            url: "https://www.youtube.com/watch?v=WtrWiV8Eymc",
+            name: "MNIST Digit Classification with Neural Network",
+            url: "https://youtu.be/Vlc-iBQoNMw?si=ofIAx4a88UVBRAnv",
             type: "youtube",
             completed: false,
           },
@@ -1735,25 +1713,27 @@ export const learningPaths: Record<string, PathData> = {
           { id: "nlp-bert", name: "BERT & GPT Basics", completed: false },
         ],
         resources: [
+
+          {
+            id: "nlp-freecode",
+            name: "What is NLP?",
+            url: "https://youtu.be/fLvJ8VdHLA0?si=XZh2PcITSuCvkjek",
+            type: "youtube",
+            completed: false,
+          }, 
           {
             id: "nlp-krish",
             name: "NLP Tutorial - Krish Naik",
-            url: "https://www.youtube.com/watch?v=fM4qTMfCoak&list=PLZoTAELRMXVMdJ5sqbCK2LiM0HhQVWNzm",
+            url: "https://youtu.be/ENLEjGozrio?si=7B6ZNdPsHZqPMv5X",
             type: "youtube",
             completed: false,
           },
-          {
-            id: "nlp-freecode",
-            name: "NLP Course - freeCodeCamp",
-            url: "https://www.youtube.com/watch?v=8S3qHHUKqYk",
-            type: "youtube",
-            completed: false,
-          },
+          
           {
             id: "huggingface",
-            name: "HuggingFace Course",
-            url: "https://huggingface.co/learn/nlp-course/chapter1/1",
-            type: "docs",
+            name: "Introduction to Transformer Architecture",
+            url: "https://youtu.be/lRylkiFdUdk?si=LO1kCXBuf14-aMkO",
+            type: "youtube",
             completed: false,
           },
         ],
@@ -1805,22 +1785,30 @@ export const learningPaths: Record<string, PathData> = {
         resources: [
           {
             id: "mlo-krish",
-            name: "ML Deployment - Krish Naik",
-            url: "https://www.youtube.com/watch?v=bjsJOl8gz5k&list=PLZoTAELRMXVOAvUbePX1lTdxQR8EY35Z1",
+            name: "ML Deployment Using AWS and Flask",
+            url: "https://youtu.be/_rwNTY5Mn40?si=uv4w_NSJ7e-IHE0J",
             type: "youtube",
             completed: false,
           },
           {
             id: "flask-ml",
-            name: "Flask ML Deployment",
-            url: "https://www.youtube.com/watch?v=mrExsjcvF4o",
+            name: "Fast API Tutorial",
+            url: "https://youtu.be/-ykeT6kk4bk?si=Qjfp-xTimpifROb9",
             type: "youtube",
             completed: false,
           },
           {
             id: "streamlit-yt",
-            name: "Streamlit Tutorial",
-            url: "https://www.youtube.com/watch?v=JwSS70SZdyM",
+            name: "MLFlow - Introduction",
+            url: "https://youtu.be/6ngxBkx05Fs?si=eEDWN0FMjFwQo2Ka",
+            type: "youtube",
+            completed: false,
+          },
+
+          {
+            id: "docker-yt",
+            name: "Docker Tutorial for beginners ",
+            url: "https://youtu.be/exmSJpJvIPs?si=f4E-Pqmpcbzpj9N0",
             type: "youtube",
             completed: false,
           },
@@ -1841,7 +1829,7 @@ export const learningPaths: Record<string, PathData> = {
           {
             id: "proj-ideas-ml",
             name: "ML Project Ideas",
-            url: "https://www.youtube.com/watch?v=fiz1ORTBGpY",
+            url: "https://youtu.be/QlbyGPVaRSE?si=d9YQzbxDH29eN_Fp",
             type: "youtube",
             completed: false,
           },
@@ -1849,13 +1837,6 @@ export const learningPaths: Record<string, PathData> = {
             id: "portfolio-ml",
             name: "ML Portfolio Guide",
             url: "https://www.youtube.com/watch?v=1aXk2RViq3c",
-            type: "youtube",
-            completed: false,
-          },
-          {
-            id: "ml-interview",
-            name: "ML Interview Preparation",
-            url: "https://www.youtube.com/watch?v=VVZVRgJaVLQ",
             type: "youtube",
             completed: false,
           },
@@ -1871,3 +1852,4 @@ export const learningPaths: Record<string, PathData> = {
     ],
   },
 }
+
