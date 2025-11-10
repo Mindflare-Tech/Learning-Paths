@@ -40,15 +40,16 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          {/* Logo & Brand */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-16 h-16  flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 flex items-center justify-center overflow-hidden">
               <Image
-                src="/logo.png" 
+                src="/logo.png"
                 alt="Learning Paths Logo"
                 width={64}
                 height={64}
                 className="object-contain"
-                priority 
+                priority
               />
             </div>
             <div className="flex flex-col">
@@ -73,14 +74,23 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
-            aria-label="Toggle dark mode"
-          >
-            {isDark ? <Sun className="w-5 h-5 text-destructive" /> : <Moon className="w-5 h-5 text-destructive" />}
-          </button>
+          {/* Right Section: Contact + Theme Toggle */}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/contact"
+              className="hidden sm:inline-block px-4 py-2 text-sm font-medium text-foreground border border-border rounded-full hover:bg-secondary/60 hover:text-destructive transition-all"
+            >
+              Contact
+            </Link>
+
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDark ? <Sun className="w-5 h-5 text-destructive" /> : <Moon className="w-5 h-5 text-destructive" />}
+            </button>
+          </div>
         </div>
       </div>
     </nav>

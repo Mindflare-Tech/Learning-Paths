@@ -112,7 +112,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-6 text-sm uppercase tracking-wide">Quick Links</h3>
             <ul className="space-y-3 mb-8">
-              <li>
+              {/* <li>
                 <Link
                   href="/about"
                   className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-red-600 dark:hover:text-red-400 transition-colors"
@@ -120,7 +120,7 @@ export function Footer() {
                   <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span>About Us</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/contact"
